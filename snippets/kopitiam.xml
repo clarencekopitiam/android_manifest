@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <!-- Github (Clarence Kopitiam) -->
+  <remote  name="kopitiam"
+           fetch="https://github.com/orgs/clarencekopitiam/"
+           revision="lineage-21.0" />
+
+  <!-- Gitea -->
+  <remote  name="kopitiam-gitea"
+           fetch="https://gitea.com/clarencelol/"
+           revision="14" />
+
+  <!-- Build -->
+  <project path="build/make" name="android_build" groups="pdk" remote="kopitiam" >
+    <copyfile src="core/root.mk" dest="Makefile" />
+    <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
+    <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
+    <linkfile src="core" dest="build/core" />
+    <linkfile src="envsetup.sh" dest="build/envsetup.sh" />
+    <linkfile src="target" dest="build/target" />
+    <linkfile src="tools" dest="build/tools" />
+  </project>
+  <project path="build/soong" name="android_build_soong" groups="pdk,tradefed" remote="kopitiam" >
+    <linkfile src="root.bp" dest="Android.bp" />
+    <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
+  </project>
+
+  <!-- Device -->
+  <project path="device/lineage/sepolicy" name="android_device_lineage_sepolicy" remote="kopitiam" />
+
+  <!-- Frameworks -->
+  <project path="frameworks/av" name="android_frameworks_av" groups="pdk" remote="kopitiam" />
+  <project path="frameworks/base" name="android_frameworks_base" groups="pdk-cw-fs,pdk-fs" remote="kopitiam" />
+  <project path="frameworks/native" name="android_frameworks_native" groups="pdk-cw-fs,pdk-fs" remote="kopitiam" />
+  <project path="frameworks/opt/telephony" name="android_frameworks_opt_telephony" groups="pdk" remote="kopitiam" />
+
+  <!-- Hardware -->
+  <project path="hardware/qcom-caf/sm8150/audio" name="android_hardware_qcom_audio_sm8150" groups="qcom,msmnile" remote="kopitiam" />
+
+  <!-- Packages -->
+  <project path="packages/apps/Settings" name="android_packages_apps_Settings" groups="pdk-fs" remote="kopitiam" />
+  <project path="packages/apps/Trebuchet" name="android_packages_apps_Trebuchet" groups="pdk-fs,sysui-studio" remote="kopitiam" />
+  <project path="packages/apps/Updater" name="android_packages_apps_Updater" groups="pdk-fs" remote="kopitiam" />
+
+  <!-- System -->
+  <project path="system/core" name="android_system_core" groups="pdk" remote="kopitiam" />
+  <project path="system/sepolicy" name="android_system_sepolicy" groups="pdk" remote="kopitiam" />
+
+  <!-- Vendor -->
+  <project path="vendor/lineage" name="android_vendor_lineage" remote="kopitiam" />
+  <project path="vendor/gms" name="android_vendor_gms" remote="kopitiam-gitea" clone-depth="1" />
+
+</manifest>
